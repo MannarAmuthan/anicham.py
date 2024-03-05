@@ -1,5 +1,4 @@
 from parser.grammar.TamizhLexer import TamizhLexer
-from parser.grammar.TamizhVisitor import TamizhVisitor
 from parser.grammar.TamizhParser import TamizhParser
 from antlr4 import *
 

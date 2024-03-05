@@ -77,7 +77,7 @@ class TamizhVisitorImpl(TamizhVisitor):
     def visitSol(self, ctx: TamizhParser.SolContext):
         sol = []
         for ezhuththu_ctx in ctx.ezhuththu():
-            sol += self.visitEzhuththu(ezhuththu_ctx)
+            sol.append(self.visitEzhuththu(ezhuththu_ctx))
         return sol
 
     def visitEzhuththu(self, ctx: TamizhParser.EzhuththuContext):
