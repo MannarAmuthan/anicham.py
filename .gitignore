@@ -1,2 +1,7 @@
 sample.txt
 *__pycache__
+.coverage
+
+
+*.py[cod]
+*$py.class

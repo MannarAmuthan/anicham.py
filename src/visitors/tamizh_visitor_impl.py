@@ -1,6 +1,5 @@
 from enum import Enum
 
-from parser.grammar.TamizhLexer import TamizhLexer
 from parser.grammar.TamizhParser import TamizhParser
 from parser.grammar.TamizhVisitor import TamizhVisitor
 
@@ -57,28 +56,28 @@ class EzhuthuType(Enum):
 class TamizhVisitorImpl(TamizhVisitor):
 
     def visitTamizh_script(self, ctx: TamizhParser.Tamizh_scriptContext):
-        ast = []
+        patthi_list = []
         for patthi_ctx in ctx.patthi():
-            ast.append(self.visitPatthi(patthi_ctx))
-        return ast
+            patthi_list.append(self.visitPatthi(patthi_ctx))
+        return patthi_list
 
     def visitPatthi(self, ctx: TamizhParser.PatthiContext):
-        vaakiyams = []
+        vaakiyam_list = []
         for vaakiyam_ctx in ctx.vaakiyam():
-            vaakiyams.append(self.visitVaakiyam(vaakiyam_ctx))
-        return vaakiyams
+            vaakiyam_list.append(self.visitVaakiyam(vaakiyam_ctx))
+        return vaakiyam_list
 
     def visitVaakiyam(self, ctx: TamizhParser.VaakiyamContext):
-        sols = []
+        sol_list = []
         for sol_ctx in ctx.sol():
-            sols.append(self.visitSol(sol_ctx))
-        return sols
+            sol_list.append(self.visitSol(sol_ctx))
+        return sol_list
 
     def visitSol(self, ctx: TamizhParser.SolContext):
-        sol = []
+        sol_list = []
         for ezhuththu_ctx in ctx.ezhuththu():
-            sol.append(self.visitEzhuththu(ezhuththu_ctx))
-        return sol
+            sol_list.append(self.visitEzhuththu(ezhuththu_ctx))
+        return sol_list
 
     def visitEzhuththu(self, ctx: TamizhParser.EzhuththuContext):
         return self.visit(ctx.getChild(0))

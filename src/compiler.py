@@ -5,14 +5,14 @@ from parser.grammar.TamizhParser import TamizhParser
 
 
 def parse(
-        file: str = None,
+        file_path: str = None,
         string: str = None,
         turn_off_mismatch_error=True
 ):
     input_data = None
-    if file:
-        with open(file, 'r') as file:
-            input_data = file.read()
+    if file_path:
+        with open(file_path, 'r') as file_path:
+            input_data = file_path.read()
     if string:
         input_data = string
 

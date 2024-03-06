@@ -9,6 +9,11 @@ antlr4-tools = "*"
 
 [dev-packages]
 pytest = "*"
+coverage = "*"
 
 [requires]
-python_version = "3.12"
+python_version = "3"
+
+[scripts]
+unit-test = "python -m coverage run -m pytest tests"
+coverage-report = "coverage report -m --fail-under=83"
