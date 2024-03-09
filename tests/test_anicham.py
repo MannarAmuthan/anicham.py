@@ -1,5 +1,8 @@
-from anicham import script, NodeType, venba
-from visitors.ast.venba import Venba, Adi, Seer, Eerasai, Nirai, Oasai, Ner, EerasaiType, MoovasaiType
+from typing import List, Union
+
+from anicham import script, NodeType, VenbaNodeType, yappu_venba
+from visitors.ast.venba import Venba, Adi, Seer, Eerasai, Nirai, Oasai, Ner, EerasaiType, MoovasaiType, Moovasai, \
+    Ezhutthu
 from visitors.tamizh_visitor_impl import EzhuthuType
 
 
@@ -66,15 +69,50 @@ def test_should_get_ezhutthu_list():
     assert len(ezhutthu_list) == 8
 
 
-def test_should_get_adi_list_from_venba():
-    actual: Venba = venba("உடுக்கை இழந்தவன் கைபோல ஆங்கே\n" + "இடுக்கண் களைவதாம் நட்பு")
+def test_should_get_venba():
+    actual: Venba = yappu_venba("உடுக்கை இழந்தவன் கைபோல ஆங்கே\n" + "இடுக்கண் களைவதாம் நட்பு")
     assert len(actual.adi_list) == 1
 
-    assert actual.adi_list[0].seer_one.eerasai.type == EerasaiType.PULIMA
-    assert actual.adi_list[0].seer_two.eerasai.type == EerasaiType.KARUVILAM
-    assert actual.adi_list[0].seer_three.moovasai.type == MoovasaiType.THEMANGAI
-    assert actual.adi_list[0].seer_four.eerasai.type == EerasaiType.THEMA
+    assert actual.adi_list[0].seer_list[0].eerasai.type == EerasaiType.PULIMA
+    assert actual.adi_list[0].seer_list[1].eerasai.type == EerasaiType.KARUVILAM
+    assert actual.adi_list[0].seer_list[2].moovasai.type == MoovasaiType.THEMANGAI
+    assert actual.adi_list[0].seer_list[3].eerasai.type == EerasaiType.THEMA
 
-    assert actual.eetradi.seer_one.eerasai.type == EerasaiType.PULIMA
-    assert actual.eetradi.seer_two.eerasai.type == EerasaiType.KARUVILAM
-    assert actual.eetradi.eetru_seer.type == EerasaiType.THEMA
+    assert actual.eetradi.seer_list[0].eerasai.type == EerasaiType.PULIMA
+    assert actual.eetradi.seer_list[1].eerasai.type == EerasaiType.KARUVILAM
+    assert actual.eetradi.seer_list[2].asai.type == EerasaiType.THEMA
+
+
+def test_should_get_adi():
+    adi_list: List[Adi] = yappu_venba("""அரிய வரைகீண்டு காட்டுவார் யாரே""", node=VenbaNodeType.ADI)
+
+    assert len(adi_list) == 1
+    assert len(adi_list[0].seer_list) == 4
+
+
+def test_should_get_seer_list():
+    seer_list: List[Seer] = yappu_venba("இன்றுகொல்", node=VenbaNodeType.SEER)
+
+    assert len(seer_list) == 1
+    assert seer_list[0].eerasai.type == EerasaiType.KOOVILAM
+
+
+def test_should_get_asai_list():
+    asai_list: List[Union[Eerasai, Moovasai]] = (
+        yappu_venba("சுரையாழ", node=VenbaNodeType.ASAI))
+    assert len(asai_list) == 1
+    assert isinstance(asai_list[0].asai_one, Nirai)
+    assert isinstance(asai_list[0].asai_two, Ner)
+    assert isinstance(asai_list[0].asai_three, Ner)
+    assert asai_list[0].type == MoovasaiType.PULIMANGAI
+
+
+def test_should_get_venba_ezhutthu_list():
+    ezhutthu_list: List[Ezhutthu] = (
+        yappu_venba("சுனை", node=VenbaNodeType.EZHUTTHU))
+    assert len(ezhutthu_list) == 2
+    assert ezhutthu_list[0].oasai == Oasai.KURIL
+    assert ezhutthu_list[0].letter == 'சு'
+
+    assert ezhutthu_list[1].oasai == Oasai.NEDIl
+    assert ezhutthu_list[1].letter == 'னை'

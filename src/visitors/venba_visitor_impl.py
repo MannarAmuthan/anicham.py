@@ -4,7 +4,7 @@ from typing import List
 from parser.grammar.Yappu.VenbaParser import VenbaParser
 from parser.grammar.Yappu.VenbaVisitor import VenbaVisitor
 from visitors.ast.venba import Venba, Eetradi, Adi, Seer, Eerasai, Moovasai, EerasaiType, MoovasaiType, Ezhutthu, \
-    Oasai, Ner, Nirai
+    Oasai, Ner, Nirai, EetruSeer
 
 
 class VenbaNodeType(enum.Enum):
@@ -48,21 +48,26 @@ class VenbaVisitorImpl(VenbaVisitor):
             if child.getText() != ' ':
                 children.append(self.visit(child))
 
-        return Adi(children[0], children[1], children[2], children[3])
+        return Adi(seer_list=children)
 
     def visitEetradi(self, ctx: VenbaParser.EetradiContext) -> Eetradi:
         children = []
-        for child in ctx.children:
-            if child.getText() != ' ':
-                children.append(self.visit(child))
+        if ctx:
+            for child in ctx.children:
+                if child.getText() != ' ':
+                    children.append(self.visit(child))
 
-        return Eetradi(children[0], children[1], children[2])
+            return Eetradi(seer_list=children)
 
     def visitSeer(self, ctx: VenbaParser.SeerContext) -> Seer:
         child = self.visit(ctx.children[0])
         if isinstance(child, Eerasai):
             return Seer(eerasai=child, moovasai=None)
         return Seer(moovasai=child, eerasai=None)
+
+    def visitEetru_seer(self, ctx:VenbaParser.Eetru_seerContext):
+        child = self.visit(ctx.children[0])
+        return EetruSeer(asai=child)
 
     def visitEerasai(self, ctx: VenbaParser.EerasaiContext) -> Eerasai:
         return self.visit(ctx.children[0])

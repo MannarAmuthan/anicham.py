@@ -66,22 +66,17 @@ class Seer:
 
 @dataclass
 class EetruSeer:
-    seer: Union[Ner, Nirai, Eerasai]
+    asai: Union[Ner, Nirai, Eerasai]
 
 
 @dataclass
 class Eetradi:
-    seer_one: Seer
-    seer_two: Seer
-    eetru_seer: EetruSeer
+    seer_list: List[Seer]
 
 
 @dataclass
 class Adi:
-    seer_one: Seer
-    seer_two: Seer
-    seer_three: Seer
-    seer_four: Seer
+    seer_list: List[Seer]
 
 
 @dataclass
