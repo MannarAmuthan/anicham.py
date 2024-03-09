@@ -1,8 +1,7 @@
 from typing import List, Union
 
-from anicham import script, NodeType, VenbaNodeType, yappu_venba, EzhuthuType
-from visitors.ast.venba import Venba, Adi, Seer, Eerasai, Nirai, Oasai, Ner, EerasaiType, MoovasaiType, Moovasai, \
-    Ezhutthu
+from anicham import script, NodeType, VenbaNodeType, yappu_venba, EzhuthuType, MoovasaiType, Ezhutthu
+from anicham.visitors.ast.venba import Oasai, Nirai, Moovasai, Ner, Eerasai, EerasaiType, Seer, Adi, Venba
 
 
 def test_should_get_patthigal_from_string():

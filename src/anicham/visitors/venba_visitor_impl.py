@@ -1,9 +1,11 @@
 import enum
 from typing import List
 
-from parser.grammar.Yappu.VenbaParser import VenbaParser
-from parser.grammar.Yappu.VenbaVisitor import VenbaVisitor
-from visitors.ast.venba import Venba, Eetradi, Adi, Seer, Eerasai, Moovasai, EerasaiType, MoovasaiType, Ezhutthu, \
+
+from anicham.parser.grammar.Yappu.VenbaParser import VenbaParser
+from anicham.parser.grammar.Yappu.VenbaVisitor import VenbaVisitor
+
+from anicham.visitors.ast.venba import Venba, Eetradi, Adi, Seer, Eerasai, Moovasai, EerasaiType, MoovasaiType, Ezhutthu, \
     Oasai, Ner, Nirai, EetruSeer
 
 

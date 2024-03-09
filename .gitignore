@@ -5,3 +5,5 @@ sample.txt
 
 *.py[cod]
 *$py.class
+dist
+*.egg-info

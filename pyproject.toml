@@ -1,0 +1,23 @@
+[project]
+name = "anicham"
+version = "0.0.1"
+authors = [
+  { name="Amuthan Mannan", email="amuthanmannar4@gmail.com" },
+]
+description = "Tamizh language parser, grammatical tools, utils, and more"
+readme = "README.md"
+requires-python = ">=3"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/MannarAmuthan/anicham.py"
+Issues = "https://github.com/MannarAmuthan/anicham.py/issues"
+
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

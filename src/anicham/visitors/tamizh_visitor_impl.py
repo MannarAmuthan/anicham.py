@@ -1,7 +1,7 @@
 from enum import Enum
 
-from parser.grammar.TamizhParser import TamizhParser
-from parser.grammar.TamizhVisitor import TamizhVisitor
+from anicham.parser.grammar.TamizhParser import TamizhParser
+from anicham.parser.grammar.TamizhVisitor import TamizhVisitor
 
 
 class EzhuthuType(Enum):

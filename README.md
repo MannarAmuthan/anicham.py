@@ -155,10 +155,6 @@ assert len(seer_list) == 1
 
 assert seer_list[0].eerasai.type == EerasaiType.KOOVILAM
 ```
-```java
-        Seer seer=Anicham.seer("ஒழுக்கத்தின்");
-        System.out.println(seer.getType()); //Prints THEMANGAI
-```
 
 ##### <a id="adi">அடி(Adi)</a>
 Basically it means line of poem. Adi contains 4 seer. 

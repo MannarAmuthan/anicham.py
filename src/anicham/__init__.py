@@ -1,11 +1,12 @@
 from enum import Enum
 from typing import Optional, List, Union
 
-from compiler import parse_script, parse_venba
-from visitors.ast.venba import Venba, Adi, Seer, Eetradi, EetruSeer, Eerasai, Moovasai, Ezhutthu, Nirai, Ner, \
+
+from .visitors.ast.venba import Venba, Adi, Seer, Eetradi, EetruSeer, Eerasai, Moovasai, Ezhutthu, Nirai, Ner, \
     MoovasaiType,EerasaiType
-from visitors.tamizh_visitor_impl import TamizhVisitorImpl, EzhuthuType
-from visitors.venba_visitor_impl import VenbaVisitorImpl, Oasai
+from .visitors.tamizh_visitor_impl import TamizhVisitorImpl, EzhuthuType
+from .visitors.venba_visitor_impl import VenbaVisitorImpl
+from .compiler import parse_script, parse_venba
 
 
 class NodeType(Enum):

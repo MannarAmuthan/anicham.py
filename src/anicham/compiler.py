@@ -1,9 +1,9 @@
 from antlr4 import InputStream, CommonTokenStream
 
-from parser.grammar.TamizhLexer import TamizhLexer
-from parser.grammar.TamizhParser import TamizhParser
-from parser.grammar.Yappu.VenbaLexer import VenbaLexer
-from parser.grammar.Yappu.VenbaParser import VenbaParser
+from .parser.grammar.TamizhLexer import TamizhLexer
+from .parser.grammar.TamizhParser import TamizhParser
+from .parser.grammar.Yappu.VenbaLexer import VenbaLexer
+from .parser.grammar.Yappu.VenbaParser import VenbaParser
 
 
 def parse_script(
