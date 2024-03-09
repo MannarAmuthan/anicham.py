@@ -1,9 +1,8 @@
 from typing import List, Union
 
-from anicham import script, NodeType, VenbaNodeType, yappu_venba
+from anicham import script, NodeType, VenbaNodeType, yappu_venba, EzhuthuType
 from visitors.ast.venba import Venba, Adi, Seer, Eerasai, Nirai, Oasai, Ner, EerasaiType, MoovasaiType, Moovasai, \
     Ezhutthu
-from visitors.tamizh_visitor_impl import EzhuthuType
 
 
 def test_should_get_patthigal_from_string():
@@ -67,6 +66,15 @@ def test_should_get_sol_list():
 def test_should_get_ezhutthu_list():
     ezhutthu_list: list = script('ஜவஹர்லால் நேரு', node=NodeType.EZHUTTHU)
     assert len(ezhutthu_list) == 8
+
+    assert ezhutthu_list == [('ஜ', EzhuthuType.GRANTHA_A),
+                             ('வ', EzhuthuType.UYIR_MEI_A),
+                             ('ஹ', EzhuthuType.GRANTHA_A),
+                             ('ர்', EzhuthuType.MEI),
+                             ('லா', EzhuthuType.UYIR_MEI_AA),
+                             ('ல்', EzhuthuType.MEI),
+                             ('நே', EzhuthuType.UYIR_MEI_AE),
+                             ('ரு', EzhuthuType.UYIR_MEI_U)]
 
 
 def test_should_get_venba():
