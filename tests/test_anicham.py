@@ -1,4 +1,5 @@
-from anicham import script, NodeType
+from anicham import script, NodeType, venba
+from visitors.ast.venba import Venba, Adi, Seer, Eerasai, Nirai, Oasai, Ner, EerasaiType, MoovasaiType
 from visitors.tamizh_visitor_impl import EzhuthuType
 
 
@@ -13,7 +14,9 @@ def test_should_get_patthigal_from_string():
 
 def test_should_get_vaakiyam_from_patthi():
     actual_data: list = script(
-        "விடுதலை இந்தியாவின் முதல் சட்ட அமைச்சராகவும், இந்திய அரசியல் சாசனத்தின் தந்தையாக விளங்கியவர்,‘பீம்ராவ் ராம்ஜி அம்பேத்கர்’. இவர் ஒரு சமூக சீர்திருத்தவாதியாக மட்டுமல்லாமல், மிகச்சிறந்த பொருளியல் அறிஞராகவும், அரசியல் தத்துவமேதையாகவும், சமூக சீர்திருத்தவாதியாகவும், பகுத்தறிவு சிந்தனையாளராகவும், சிறந்த எழுத்தாளர் மற்றும் பேச்சாளராகவும், வரலாற்று ஆசானாகவும் விளங்கியவர்")
+        "விடுதலை இந்தியாவின் முதல் சட்ட அமைச்சராகவும், இந்திய அரசியல் சாசனத்தின் தந்தையாக விளங்கியவர்,‘பீம்ராவ் ராம்ஜி அம்பேத்கர்’. "
+        "இவர் ஒரு சமூக சீர்திருத்தவாதியாக மட்டுமல்லாமல், மிகச்சிறந்த பொருளியல் அறிஞராகவும், அரசியல் தத்துவமேதையாகவும், "
+        "சமூக சீர்திருத்தவாதியாகவும், பகுத்தறிவு சிந்தனையாளராகவும், சிறந்த எழுத்தாளர் மற்றும் பேச்சாளராகவும், வரலாற்று ஆசானாகவும் விளங்கியவர்")
     assert len(actual_data[0]) == 2
 
 
@@ -61,3 +64,17 @@ def test_should_get_sol_list():
 def test_should_get_ezhutthu_list():
     ezhutthu_list: list = script('ஜவஹர்லால் நேரு', node=NodeType.EZHUTTHU)
     assert len(ezhutthu_list) == 8
+
+
+def test_should_get_adi_list_from_venba():
+    actual: Venba = venba("உடுக்கை இழந்தவன் கைபோல ஆங்கே\n" + "இடுக்கண் களைவதாம் நட்பு")
+    assert len(actual.adi_list) == 1
+
+    assert actual.adi_list[0].seer_one.eerasai.type == EerasaiType.PULIMA
+    assert actual.adi_list[0].seer_two.eerasai.type == EerasaiType.KARUVILAM
+    assert actual.adi_list[0].seer_three.moovasai.type == MoovasaiType.THEMANGAI
+    assert actual.adi_list[0].seer_four.eerasai.type == EerasaiType.THEMA
+
+    assert actual.eetradi.seer_one.eerasai.type == EerasaiType.PULIMA
+    assert actual.eetradi.seer_two.eerasai.type == EerasaiType.KARUVILAM
+    assert actual.eetradi.eetru_seer.type == EerasaiType.THEMA

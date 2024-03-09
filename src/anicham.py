@@ -1,8 +1,9 @@
 from enum import Enum
 from typing import Optional
 
-from compiler import parse
+from compiler import parse_script, parse_venba
 from visitors.tamizh_visitor_impl import TamizhVisitorImpl
+from visitors.venba_visitor_impl import VenbaVisitorImpl
 
 
 class NodeType(Enum):
@@ -12,7 +13,7 @@ class NodeType(Enum):
     PATTHI = 4
 
 
-def get_vaakiyam(patthi_list) -> list:
+def get_vaakiyam(patthi_list: list) -> list:
     vaakiyam_list = []
     for patthi in patthi_list:
         vaakiyam_list.extend(patthi)
@@ -20,7 +21,7 @@ def get_vaakiyam(patthi_list) -> list:
     return vaakiyam_list
 
 
-def get_sol(patthi_list) -> list:
+def get_sol(patthi_list: list) -> list:
     sol_list = []
     vaakiyam_list = get_vaakiyam(patthi_list)
     for vaakiyam in vaakiyam_list:
@@ -29,7 +30,7 @@ def get_sol(patthi_list) -> list:
     return sol_list
 
 
-def get_ezhutthu(patthi_list) -> list:
+def get_ezhutthu(patthi_list: list) -> list:
     ezhutthu_list = []
     sol_list = get_sol(patthi_list)
     for sol in sol_list:
@@ -39,7 +40,7 @@ def get_ezhutthu(patthi_list) -> list:
 
 
 def script(string: str, node: Optional[NodeType] = None):
-    tree = parse(string=string).tamizh_script()
+    tree = parse_script(string=string).tamizh_script()
     patthi_list = TamizhVisitorImpl().visit(tree)
     if node == NodeType.SOL:
         return get_sol(patthi_list)
@@ -48,3 +49,8 @@ def script(string: str, node: Optional[NodeType] = None):
     if node == NodeType.VAAKIYAM:
         return get_vaakiyam(patthi_list)
     return patthi_list
+
+
+def venba(string: str):
+    tree = parse_venba(string=string).venba()
+    return VenbaVisitorImpl().visit(tree)

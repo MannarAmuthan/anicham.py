@@ -6,7 +6,7 @@
 grammar Venba;
 
 
-venpa: (adi NEWLINE)+ eetradi;
+venba: (adi NEWLINE)+ eetradi;
 
 adi: seer WS seer WS seer WS seer;
 
