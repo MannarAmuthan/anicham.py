@@ -58,6 +58,13 @@ class Moovasai:
     type: MoovasaiType
 
 
+class EetruSeerAsai(Enum):
+    NAAL = 1
+    MALAR = 2
+    KAASU = 3
+    PIRAPPU = 4
+
+
 @dataclass
 class Seer:
     eerasai: Optional[Eerasai]
@@ -67,6 +74,16 @@ class Seer:
 @dataclass
 class EetruSeer:
     asai: Union[Ner, Nirai, Eerasai]
+
+    def get_eetru_seer_asai(self):
+        if isinstance(self.asai, Ner):
+            return EetruSeerAsai.NAAL
+        if isinstance(self.asai, Nirai):
+            return EetruSeerAsai.MALAR
+        if self.asai.type.THEMA:
+            return EetruSeerAsai.KAASU
+        if self.asai.type.PULIMA:
+            return EetruSeerAsai.PIRAPPU
 
 
 @dataclass

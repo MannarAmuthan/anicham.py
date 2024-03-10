@@ -1,7 +1,7 @@
 from typing import List, Union
 
-from anicham import script, NodeType, VenbaNodeType, yappu_venba, EzhuthuType, MoovasaiType, Ezhutthu
-from anicham.visitors.ast.venba import Oasai, Nirai, Moovasai, Ner, Eerasai, EerasaiType, Seer, Adi, Venba
+from anicham import script, NodeType, VenbaNodeType, yappu_venba, EzhuthuType, MoovasaiType, Ezhutthu, EetruSeerAsai
+from anicham import Oasai, Nirai, Moovasai, Ner, Eerasai, EerasaiType, Seer, Adi, Venba
 
 
 def test_should_get_patthigal_from_string():
@@ -88,6 +88,8 @@ def test_should_get_venba():
     assert actual.eetradi.seer_list[0].eerasai.type == EerasaiType.PULIMA
     assert actual.eetradi.seer_list[1].eerasai.type == EerasaiType.KARUVILAM
     assert actual.eetradi.seer_list[2].asai.type == EerasaiType.THEMA
+
+    assert actual.eetradi.seer_list[2].get_eetru_seer_asai() == EetruSeerAsai.KAASU
 
 
 def test_should_get_adi():

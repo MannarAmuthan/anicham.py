@@ -178,9 +178,9 @@ Read more about [here](https://ta.wikipedia.org/wiki/%E0%AE%B5%E0%AF%86%E0%AE%A3
 
 Usage:
 ```python
-from anicham import yappu_venba,EerasaiType,MoovasaiType
+from anicham import yappu_venba,EerasaiType,MoovasaiType,Venba,EetruSeerAsai
 
-actual = yappu_venba("உடுக்கை இழந்தவன் கைபோல ஆங்கே\n" + "இடுக்கண் களைவதாம் நட்பு")
+actual: Venba = yappu_venba("உடுக்கை இழந்தவன் கைபோல ஆங்கே\n" + "இடுக்கண் களைவதாம் நட்பு")
 assert len(actual.adi_list) == 1
 
 assert actual.adi_list[0].seer_list[0].eerasai.type == EerasaiType.PULIMA
@@ -191,6 +191,8 @@ assert actual.adi_list[0].seer_list[3].eerasai.type == EerasaiType.THEMA
 assert actual.eetradi.seer_list[0].eerasai.type == EerasaiType.PULIMA
 assert actual.eetradi.seer_list[1].eerasai.type == EerasaiType.KARUVILAM
 assert actual.eetradi.seer_list[2].asai.type == EerasaiType.THEMA
+
+assert actual.eetradi.seer_list[2].get_eetru_seer_asai() == EetruSeerAsai.KAASU
 ```
 
 ## Contributing

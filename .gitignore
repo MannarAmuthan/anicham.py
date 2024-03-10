@@ -7,3 +7,4 @@ sample.txt
 *$py.class
 dist
 *.egg-info
+.DS_Store
