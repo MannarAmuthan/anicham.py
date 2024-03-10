@@ -1,9 +1,8 @@
 from enum import Enum
 from typing import Optional, List, Union
 
-
 from .visitors.ast.venba import Venba, Adi, Seer, Eetradi, EetruSeer, Eerasai, Moovasai, Ezhutthu, Nirai, Ner, \
-    MoovasaiType,EerasaiType
+    MoovasaiType, EerasaiType, Oasai
 from .visitors.tamizh_visitor_impl import TamizhVisitorImpl, EzhuthuType
 from .visitors.venba_visitor_impl import VenbaVisitorImpl
 from .compiler import parse_script, parse_venba

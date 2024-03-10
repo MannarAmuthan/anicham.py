@@ -1,6 +1,6 @@
 [project]
 name = "anicham"
-version = "0.0.1"
+version = "0.0.5"
 authors = [
   { name="Amuthan Mannan", email="amuthanmannar4@gmail.com" },
 ]
@@ -11,6 +11,11 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "antlr4-python3-runtime>=4",
+  "antlr4-tools>=0.2.1"
 ]
 
 [project.urls]
