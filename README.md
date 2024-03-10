@@ -2,6 +2,14 @@
 
 Tamizh language parser to parse tamizh texts of UTF-8 encoded. Provides functions for identify and manipulate tamizh strings. Structured by hierchical elements of Tamizh native grammar rules (Ezhuthu, Sol, Vaakiyam). 
 
+
+### Installation
+
+```shell
+pip install anicham
+```
+
+
 ## Contents
 
 [1.Core Elements](#core-elements)
